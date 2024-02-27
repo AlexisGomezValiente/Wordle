@@ -124,3 +124,8 @@ body{
 #ganaste{
     display: none;
 }
+
+#autor{
+    position: absolute;
+    bottom: 70px;
+}
