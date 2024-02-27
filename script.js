@@ -19,10 +19,10 @@ const agregaIntento = () => {
 
     if(intentos <= 5){
         if(gano == false){
-            intentos += 1;
             let palabra = inputPalabra.value;
         
             if(palabra.length == 5){
+                intentos += 1;
                 error.style.display = "none";
                 let palabraMayus = palabra.toUpperCase()
 
