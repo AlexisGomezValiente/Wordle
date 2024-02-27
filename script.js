@@ -9,46 +9,50 @@ let reiniciar = document.getElementById("reiniciar");
 let error = document.getElementById("error");
 let ganaste = document.getElementById("ganaste");
 
-let palabraCorrecta = "BUENO";
+let palabraCorrecta = "HOGAR";
 let palabraCorrArr = palabraCorrecta.split("");
 let intentos = 0;
+let gano = false;
 
 const agregaIntento = () => {
     resultadoH2.style.display = "none";
-    intentos += 1;
 
-    if(intentos <= 6){
-        let palabra = inputPalabra.value;
+    if(intentos <= 5){
+        if(gano == false){
+            intentos += 1;
+            let palabra = inputPalabra.value;
         
-        if(palabra.length == 5){
-            error.style.display = "none";
-            let palabraMayus = palabra.toUpperCase()
+            if(palabra.length == 5){
+                error.style.display = "none";
+                let palabraMayus = palabra.toUpperCase()
 
-            if(palabraMayus == palabraCorrecta){
-                gana();
-            }
-
-            let palabraArr = palabraMayus.split("");
-            let divText = document.createElement("div");
-            divText.classList.add("textDiv");
-        
-            for(let i = 0; i < palabraArr.length; i++){
-                let pText = document.createElement("p");
-                pText.classList.add("text");
-        
-                if(palabraArr[i] == palabraCorrArr[i]){
-                    pText.classList.add("correcto");
-                }else if(palabraCorrArr.includes(palabraArr[i])){
-                    pText.classList.add("contiene");
+                if(palabraMayus == palabraCorrecta){
+                    gana();
                 }
-        
-                pText.textContent = palabraArr[i];
-                divText.appendChild(pText);
+
+                let palabraArr = palabraMayus.split("");
+                let divText = document.createElement("div");
+                divText.classList.add("textDiv");
+            
+                for(let i = 0; i < palabraArr.length; i++){
+                    let pText = document.createElement("p");
+                    pText.classList.add("text");
+            
+                    if(palabraArr[i] == palabraCorrArr[i]){
+                        pText.classList.add("correcto");
+                    }else if(palabraCorrArr.includes(palabraArr[i])){
+                        pText.classList.add("contiene");
+                    }
+            
+                    pText.textContent = palabraArr[i];
+                    divText.appendChild(pText);
+                }
+            
+                resultadosPalabras.appendChild(divText);
+            }else{
+                resultadoH2.style.display = "block";
+                error.style.display = "block";
             }
-        
-            resultadosPalabras.appendChild(divText);
-        }else{
-            error.style.display = "block";
         }
     }else{
         perdio();
@@ -65,6 +69,7 @@ const perdio = () => {
 }
 
 const reinicio = () => {
+    gano = false;
     intentos = 0;
     reiniciar.style.pointerEvents = "none";
     reiniciar.style.opacity = 0.5;
@@ -77,6 +82,7 @@ const reinicio = () => {
 }
 
 const gana = () => {
+    gano = true;
     ganaste.style.display = "block";
     intentar.style.pointerEvents = "none";
     intentar.style.opacity = 0.5;
@@ -87,7 +93,7 @@ const gana = () => {
 intentar.addEventListener("click", agregaIntento)
 
 inputPalabra.addEventListener("keypress", (e) => {
-    if (e.key == "Enter") agregaIntento();
+    if (e.key == "Enter" && intentos <= 5) agregaIntento();
 });
 
 reiniciar.addEventListener("click", reinicio)
