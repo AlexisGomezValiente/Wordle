@@ -93,7 +93,9 @@ const gana = () => {
 intentar.addEventListener("click", agregaIntento)
 
 inputPalabra.addEventListener("keypress", (e) => {
-    if (e.key == "Enter" && intentos <= 5) agregaIntento();
+    if (e.key == "Enter"){
+        agregaIntento();
+    } 
 });
 
 reiniciar.addEventListener("click", reinicio)
