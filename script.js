@@ -9,7 +9,7 @@ let reiniciar = document.getElementById("reiniciar");
 let error = document.getElementById("error");
 let ganaste = document.getElementById("ganaste");
 
-let palabraCorrecta = "HOGAR";
+let palabraCorrecta = "BURRO";
 let palabraCorrArr = palabraCorrecta.split("");
 let intentos = 0;
 let gano = false;
@@ -48,14 +48,20 @@ const crearDivText = (palabraArr) => {
     let divText = document.createElement("div");
     divText.classList.add("textDiv");
 
+    let copiaPalabraArr = palabraCorrArr.map(e => e);
+    let copiaPalabraIntento = palabraArr.map(e => e);
+
     for(let i = 0; i < palabraArr.length; i++){
         let pText = document.createElement("p");
         pText.classList.add("text");
 
+        let verificar = verificarRepetidos(i, copiaPalabraArr, copiaPalabraIntento);
+        if(verificar){
+            pText.classList.add("contiene");
+        }
+
         if(palabraArr[i] == palabraCorrArr[i]){
             pText.classList.add("correcto");
-        }else if(palabraCorrArr.includes(palabraArr[i])){
-            pText.classList.add("contiene");
         }
 
         pText.textContent = palabraArr[i];
@@ -63,6 +69,22 @@ const crearDivText = (palabraArr) => {
     }
 
     return divText;
+}
+
+const verificarRepetidos = (indice, copiaPalabraArr, copiaPalabraIntento) => {
+    let elementoBuscado = copiaPalabraIntento[indice];
+    if(copiaPalabraArr.includes(elementoBuscado) && copiaPalabraIntento[indice] != copiaPalabraArr[indice]){
+        let indiceEncontrado = copiaPalabraArr.indexOf(elementoBuscado);
+        if(copiaPalabraIntento[indiceEncontrado] != copiaPalabraArr[indiceEncontrado]){
+
+            copiaPalabraIntento.splice(indiceEncontrado, 1)
+            copiaPalabraArr.splice(indiceEncontrado, 1);
+
+            return true;
+        }
+    }
+
+    return false;
 }
 
 const perdio = () => {
@@ -99,9 +121,7 @@ const gana = () => {
 intentar.addEventListener("click", agregaIntento)
 
 inputPalabra.addEventListener("keypress", (e) => {
-    if (e.key == "Enter"){
-        agregaIntento();
-    } 
+    if (e.key == "Enter") agregaIntento() 
 });
 
 reiniciar.addEventListener("click", reinicio)
