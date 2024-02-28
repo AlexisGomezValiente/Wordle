@@ -31,22 +31,7 @@ const agregaIntento = () => {
                 }
 
                 let palabraArr = palabraMayus.split("");
-                let divText = document.createElement("div");
-                divText.classList.add("textDiv");
-            
-                for(let i = 0; i < palabraArr.length; i++){
-                    let pText = document.createElement("p");
-                    pText.classList.add("text");
-            
-                    if(palabraArr[i] == palabraCorrArr[i]){
-                        pText.classList.add("correcto");
-                    }else if(palabraCorrArr.includes(palabraArr[i])){
-                        pText.classList.add("contiene");
-                    }
-            
-                    pText.textContent = palabraArr[i];
-                    divText.appendChild(pText);
-                }
+                let divText = crearDivText(palabraArr);
             
                 resultadosPalabras.appendChild(divText);
             }else{
@@ -57,6 +42,27 @@ const agregaIntento = () => {
     }else{
         perdio();
     }
+}
+
+const crearDivText = (palabraArr) => {
+    let divText = document.createElement("div");
+    divText.classList.add("textDiv");
+
+    for(let i = 0; i < palabraArr.length; i++){
+        let pText = document.createElement("p");
+        pText.classList.add("text");
+
+        if(palabraArr[i] == palabraCorrArr[i]){
+            pText.classList.add("correcto");
+        }else if(palabraCorrArr.includes(palabraArr[i])){
+            pText.classList.add("contiene");
+        }
+
+        pText.textContent = palabraArr[i];
+        divText.appendChild(pText);
+    }
+
+    return divText;
 }
 
 const perdio = () => {
