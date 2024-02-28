@@ -9,7 +9,7 @@ let reiniciar = document.getElementById("reiniciar");
 let error = document.getElementById("error");
 let ganaste = document.getElementById("ganaste");
 
-let palabraCorrecta = "BURRO";
+let palabraCorrecta = "HOGAR";
 let palabraCorrArr = palabraCorrecta.split("");
 let intentos = 0;
 let gano = false;
