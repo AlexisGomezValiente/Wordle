@@ -1,13 +1,17 @@
-let inputPalabra = document.getElementById("palabra");
-let intentar = document.getElementById("intentar");
-let divResultados = document.getElementById("resultados");
-let resultadoH2 = document.getElementById("resultadoH2");
-let perdiste = document.getElementById("perdiste");
-let textDiv = document.getElementsByClassName("textDiv");
-let resultadosPalabras = document.getElementById("palabrasRes");
-let reiniciar = document.getElementById("reiniciar");
-let error = document.getElementById("error");
-let ganaste = document.getElementById("ganaste");
+const accederDom = (id) => {
+    return document.getElementById(id);
+};
+
+let inputPalabra = accederDom("palabra");
+let intentar = accederDom("intentar");
+let divResultados = accederDom("resultados");
+let resultadoH2 = accederDom("resultadoH2");
+let perdiste = accederDom("perdiste");
+let textDiv = accederDom("textDiv");
+let resultadosPalabras = accederDom("palabrasRes");
+let reiniciar = accederDom("reiniciar");
+let error = accederDom("error");
+let ganaste = accederDom("ganaste");
 
 let palabraCorrecta = "HOGAR";
 let palabraCorrArr = palabraCorrecta.split("");
