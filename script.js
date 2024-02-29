@@ -13,8 +13,23 @@ let reiniciar = accederDom("reiniciar");
 let error = accederDom("error");
 let ganaste = accederDom("ganaste");
 
-let palabraCorrecta = "HOGAR";
-let palabraCorrArr = palabraCorrecta.split("");
+let palabraCorrecta = "";
+let palabraCorrArr = [];
+const URLFetch = "https://random-word-api.herokuapp.com/word?number=1&length=5&lang=es"
+
+const cambioPalabra = () => {
+    fetch(URLFetch)
+    .then(res => res.json())
+    .then(data => {
+        palabraCorrecta = data[0].toUpperCase();
+        palabraCorrArr = palabraCorrecta.split("");
+        console.log(palabraCorrecta);
+    })
+    .catch(err => console.log(err));
+}
+
+cambioPalabra();
+
 let intentos = 0;
 let gano = false;
 
@@ -39,13 +54,14 @@ const agregaIntento = () => {
             
                 resultadosPalabras.appendChild(divText);
             }else{
-                resultadoH2.style.display = "block";
                 error.style.display = "block";
             }
         }
     }else{
         perdio();
     }
+
+    inputPalabra.value = "";
 }
 
 const crearDivText = (palabraArr) => {
@@ -129,3 +145,4 @@ inputPalabra.addEventListener("keypress", (e) => {
 });
 
 reiniciar.addEventListener("click", reinicio);
+reiniciar.addEventListener("click", cambioPalabra);
