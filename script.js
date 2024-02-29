@@ -100,18 +100,34 @@ const crearDivText = (palabraArr) => {
 }
 
 const verificarRepetidos = (indice, copiaPalabraArr, copiaPalabraIntento) => {
+    //?Aqui lo que hago es guardar el elemento en el indice recibido por parametro
+    //?Lo busco en la palabra del intento
     let elementoBuscado = copiaPalabraIntento[indice];
+
+    //?Pregunto si la palabra correcta incluye el elementoBuscado y si el contenido
+    //?del intento y la correcta en ese indice recibido por parametro son diferentes
     if(copiaPalabraArr.includes(elementoBuscado) && copiaPalabraIntento[indice] != copiaPalabraArr[indice]){
+
+        //?Guardo el indice donde se encuentra la coincidencia en la palabra correcta
+        //?Osea en que indice encuentra el elementoBuscado en la palabra correcta
         let indiceEncontrado = copiaPalabraArr.indexOf(elementoBuscado);
+
+        //?Pregunto si el contenido del intento y la correcta en el indice donde se
+        //?encuentro el elementoBuscado en la palabra correcta son diferentes 
         if(copiaPalabraIntento[indiceEncontrado] != copiaPalabraArr[indiceEncontrado]){
 
-            copiaPalabraIntento.splice(indiceEncontrado, 1)
-            copiaPalabraArr.splice(indiceEncontrado, 1);
+            //?Entonces elimino ese elemento para que luego no lo vuelva a encontrar
+            //?Y no lo pinte devuelta en NARANJA
+            copiaPalabraIntento.splice(indiceEncontrado, 1);
 
+            //?Si entro hasta aqui significa que encontro coincidencias y las elimino
+            //?Y retorna true para su posterior verificacion en la funcion crearDivText()
             return true;
         }
     }
 
+    //?Retorna false si la palabra correcta no incluye el elementoBuscado O si el elemento
+    //?en la palabra correcta y la palabra intento son iguales(significa que es correcto)
     return false;
 }
 
