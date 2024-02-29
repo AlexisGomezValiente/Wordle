@@ -76,15 +76,14 @@ const crearDivText = (palabraArr) => {
     let divText = document.createElement("div");
     divText.classList.add("textDiv");
 
-    let copiaPalabraArr = palabraCorrArr.map(e => e);
-    let copiaPalabraIntento = palabraArr.map(e => e);
+    let repetidos = verificarRepetidos(palabraArr);
+    let indicesDeRepetidos = repetidos.map(e => e.indice);
 
     for(let i = 0; i < palabraArr.length; i++){
         let spanText = document.createElement("span");
         spanText.classList.add("text");
 
-        let verificar = verificarRepetidos(i, copiaPalabraArr, copiaPalabraIntento);
-        if(verificar){
+        if(indicesDeRepetidos.includes(i)){
             spanText.classList.add("contiene");
         }
 
@@ -99,37 +98,37 @@ const crearDivText = (palabraArr) => {
     return divText;
 }
 
-const verificarRepetidos = (indice, copiaPalabraArr, copiaPalabraIntento) => {
-    //?Aqui lo que hago es guardar el elemento en el indice recibido por parametro
-    //?Lo busco en la palabra del intento
-    let elementoBuscado = copiaPalabraIntento[indice];
+//*Esta es la funcion que verifica los repetidos y que pinte en NARANJA de forma correcta
+//*Y que no pinte demas las letras
+const verificarRepetidos = (palabraArr) => {
+    //?Aca creo un array auxiliar donde voy a guardar los repetidos que se encuentran en 
+    //?en la palabra correcta
+    let arrRepetidos = [];
 
-    //?Pregunto si la palabra correcta incluye el elementoBuscado y si el contenido
-    //?del intento y la correcta en ese indice recibido por parametro son diferentes
-    if(copiaPalabraArr.includes(elementoBuscado) && copiaPalabraIntento[indice] != copiaPalabraArr[indice]){
+    //?Recorro la palabra ingresada por el usuario
+    palabraArr.forEach((element, i) => {
+        //?Verifico cuantos repetidos existen sobre este ELEMENT en la palabra correcta
+        let cantidadRepe = palabraCorrArr.filter(e => e == element).length;
 
-        //?Guardo el indice donde se encuentra la coincidencia en la palabra correcta
-        //?Osea en que indice encuentra el elementoBuscado en la palabra correcta
-        let indiceEncontrado = copiaPalabraArr.indexOf(elementoBuscado);
+        //?Verifico cuantos repetidos existen sobre este ELEMENT en la palabra ingresada
+        let cantidadRepeActual = arrRepetidos.filter(e => e.elemento == element).length;
 
-        //?Pregunto si el contenido del intento y la correcta en el indice donde se
-        //?encuentro el elementoBuscado en la palabra correcta son diferentes 
-        if(copiaPalabraIntento[indiceEncontrado] != copiaPalabraArr[indiceEncontrado]){
-
-            //?Entonces elimino esos elementos para que luego no lo vuelva a encontrar
-            //?Y no lo pinte devuelta en NARANJA
-            copiaPalabraArr.splice(indiceEncontrado, 1);
-            copiaPalabraIntento.splice(indiceEncontrado, 1);
-
-            //?Si entro hasta aqui significa que encontro coincidencias y las elimino
-            //?Y retorna true para su posterior verificacion en la funcion crearDivText()
-            return true;
+        //?Si la palabra correcta incluye este elemento y en ese indice no son iguales
+        //?las letras respecto al ingresado por el usuario y la correcta y por ultimo
+        //?Si la cantidad de este ELEMENT(Por ejemplo la letra H) es mayor que la cantidad 
+        //?repetida actual agrega este elemento y su indice en un objeto siendo pusheado 
+        //?al array auxiliar, si por ejemplo la cantidad de ELEMENT en la palabra ingresada
+        //?ya no ingresara en este if
+        if(palabraCorrArr.includes(element) && element != palabraCorrArr[i] && cantidadRepe > cantidadRepeActual){
+            arrRepetidos.push({
+                indice: i,
+                elemento: element
+            })
         }
-    }
+    })
 
-    //?Retorna false si la palabra correcta no incluye el elementoBuscado O si el elemento
-    //?en la palabra correcta y la palabra intento son iguales(significa que es correcto)
-    return false;
+    //!Retorno el array de objetos para su posterior recorrido en la funcion crearDivText()
+    return arrRepetidos;
 }
 
 const perdio = () => {
