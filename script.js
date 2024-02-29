@@ -15,7 +15,9 @@ let ganaste = accederDom("ganaste");
 
 let palabraCorrecta = "";
 let palabraCorrArr = [];
-const URLFetch = "https://random-word-api.herokuapp.com/word?number=1&length=5&lang=es"
+let arrSecundario = ["HOGAR", "BUENO", "HORNO", "JARRO", "LAPIZ"];
+let indiceRandom = 0;
+const URLFetch = "https://random-word-api.herokuapp.com/word?number=1&length=5&lang=es";
 
 const cambioPalabra = () => {
     fetch(URLFetch)
@@ -25,7 +27,13 @@ const cambioPalabra = () => {
         palabraCorrArr = palabraCorrecta.split("");
         console.log(palabraCorrecta);
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+        console.log(err);
+        indiceRandom = Math.floor(Math.random() * arrSecundario.length); 
+        palabraCorrecta = arrSecundario[indiceRandom].toUpperCase();
+        palabraCorrArr = palabraCorrecta.split("");
+        console.log(palabraCorrecta)
+    });
 }
 
 cambioPalabra();
