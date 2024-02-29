@@ -116,9 +116,10 @@ const verificarRepetidos = (indice, copiaPalabraArr, copiaPalabraIntento) => {
         //?encuentro el elementoBuscado en la palabra correcta son diferentes 
         if(copiaPalabraIntento[indiceEncontrado] != copiaPalabraArr[indiceEncontrado]){
 
-            //?Entonces elimino ese elemento para que luego no lo vuelva a encontrar
+            //?Entonces elimino esos elementos para que luego no lo vuelva a encontrar
             //?Y no lo pinte devuelta en NARANJA
             copiaPalabraArr.splice(indiceEncontrado, 1);
+            copiaPalabraIntento.splice(indiceEncontrado, 1);
 
             //?Si entro hasta aqui significa que encontro coincidencias y las elimino
             //?Y retorna true para su posterior verificacion en la funcion crearDivText()
