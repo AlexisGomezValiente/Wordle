@@ -52,20 +52,20 @@ const crearDivText = (palabraArr) => {
     let copiaPalabraIntento = palabraArr.map(e => e);
 
     for(let i = 0; i < palabraArr.length; i++){
-        let pText = document.createElement("p");
-        pText.classList.add("text");
+        let spanText = document.createElement("span");
+        spanText.classList.add("text");
 
         let verificar = verificarRepetidos(i, copiaPalabraArr, copiaPalabraIntento);
         if(verificar){
-            pText.classList.add("contiene");
+            spanText.classList.add("contiene");
         }
 
         if(palabraArr[i] == palabraCorrArr[i]){
-            pText.classList.add("correcto");
+            spanText.classList.add("correcto");
         }
 
-        pText.textContent = palabraArr[i];
-        divText.appendChild(pText);
+        spanText.textContent = palabraArr[i];
+        divText.appendChild(spanText);
     }
 
     return divText;
@@ -118,10 +118,10 @@ const gana = () => {
     reiniciar.style.opacity = 1;
 }
 
-intentar.addEventListener("click", agregaIntento)
+intentar.addEventListener("click", agregaIntento);
 
 inputPalabra.addEventListener("keypress", (e) => {
-    if (e.key == "Enter") agregaIntento() 
+    if (e.key == "Enter") agregaIntento(); 
 });
 
-reiniciar.addEventListener("click", reinicio)
+reiniciar.addEventListener("click", reinicio);
