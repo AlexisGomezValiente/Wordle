@@ -118,7 +118,7 @@ const verificarRepetidos = (indice, copiaPalabraArr, copiaPalabraIntento) => {
 
             //?Entonces elimino ese elemento para que luego no lo vuelva a encontrar
             //?Y no lo pinte devuelta en NARANJA
-            copiaPalabraIntento.splice(indiceEncontrado, 1);
+            copiaPalabraArr.splice(indiceEncontrado, 1);
 
             //?Si entro hasta aqui significa que encontro coincidencias y las elimino
             //?Y retorna true para su posterior verificacion en la funcion crearDivText()
