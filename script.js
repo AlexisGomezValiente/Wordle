@@ -15,9 +15,9 @@ let ganaste = accederDom("ganaste");
 
 let palabraCorrecta = "";
 let palabraCorrArr = [];
-let arrSecundario = ["HOGAR", "BUENO", "HORNO", "JARRO", "LAPIZ"];
+let arrSecundario = ["POLVO"];
 let indiceRandom = 0;
-const URLFetch = "https://random-word-api.herokuapp.com/word?number=1&length=5&lang=es";
+const URLFetch = "https://rrandom-word-api.herokuapp.com/word?number=1&length=5&lang=es";
 
 const cambioPalabra = () => {
     fetch(URLFetch)
@@ -145,6 +145,9 @@ const verificarRepetidos = (palabraArr) => {
         })
     })
 
+    console.log(arrObjCantidadesCorrecto);
+    console.log(arrObjCantidadesIntento);
+
     arrObjCantidadesIntento.forEach(ele => {
         let elemento = ele.elemento;
         let indices = ele.indices.filter(e => e != undefined);
@@ -165,9 +168,7 @@ const verificarRepetidos = (palabraArr) => {
         });
         cantidadCorrecta = cantidadCorrecta.filter(e => e != undefined);
 
-        let indicesDesiguales = indices.filter(e => {
-            if(!indicesCorrectos.includes(e)) return e;
-        });
+        let indicesDesiguales = indices.filter(e => !indicesCorrectos.includes(e));
 
         if(cantidadCorrecta != cantidadIndicesIguales.length){
             if(cantidadCorrecta[0]){
