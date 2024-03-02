@@ -136,7 +136,10 @@ body{
 
 @media (max-width: 850px) {
     body {
-        height: 100%; /* Ajusta la altura para restar la barra de navegación */
+        overflow: hidden; /* Para deshabilitar el scroll */
+        padding: 0; /* Asegúrate de que no haya relleno adicional en el body */
+        margin: 0; /* Asegúrate de que no haya margen adicional en el body */
+        height: calc(100vh - 60px); /* Ajusta la altura para restar la barra de navegación */
     }
 
     #padre {
@@ -145,6 +148,7 @@ body{
         border-radius: 0;
         width: 100%;
         height: 100%; /* Cambiado a 100% en lugar de 100vh */
+        overflow-y: hidden; /* Para deshabilitar el scroll vertical en el contenedor */
         flex-direction: column-reverse;
     }
 
