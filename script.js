@@ -15,9 +15,9 @@ let ganaste = accederDom("ganaste");
 
 let palabraCorrecta = "";
 let palabraCorrArr = [];
-let arrSecundario = ["POLVO"];
+let arrSecundario = ["HOGAR", "BUENO", "HORNO", "JARRO", "LAPIZ"];
 let indiceRandom = 0;
-const URLFetch = "https://rrandom-word-api.herokuapp.com/word?number=1&length=5&lang=es";
+const URLFetch = "https://random-word-api.herokuapp.com/word?number=1&length=5&lang=es";
 
 const cambioPalabra = () => {
     fetch(URLFetch)
@@ -145,9 +145,6 @@ const verificarRepetidos = (palabraArr) => {
         })
     })
 
-    console.log(arrObjCantidadesCorrecto);
-    console.log(arrObjCantidadesIntento);
-
     arrObjCantidadesIntento.forEach(ele => {
         let elemento = ele.elemento;
         let indices = ele.indices.filter(e => e != undefined);
@@ -218,7 +215,7 @@ const gana = () => {
 intentar.addEventListener("click", agregaIntento);
 
 inputPalabra.addEventListener("keypress", (e) => {
-    if (e.key == "Enter") agregaIntento(); 
+    if (e.key == "Enter" && !gano) agregaIntento();
 });
 
 reiniciar.addEventListener("click", reinicio);
