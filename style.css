@@ -18,12 +18,14 @@ body{
 #padre{
     width: 800px;
     height: 550px;
-    background-color: white;
     border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     box-shadow: 10px 10px 20px rgb(5, 97, 5);
+    background: url(letras.png);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #intentos{
@@ -56,9 +58,9 @@ body{
     color: white;
     background-color: rgb(34, 180, 34);
     cursor: pointer;
-    width: 150px;
+    width: 180px;
     border-radius: 10px;
-    height: 40px;
+    height: 50px;
     font-size: 20px;
     margin-top: 15px;
 }
@@ -70,7 +72,7 @@ body{
 #resultados{
     width: 50%;
     height: 100%;
-    background-color: rgb(34, 180, 34);
+    background-color: rgba(34, 180, 34, 0.8);
     border-radius: 0 10px 10px 0;
     display: flex;
     justify-content: center;
@@ -136,7 +138,7 @@ body{
         box-shadow: none;
         border-radius: 0;
         width: 100%;
-        height: 100vh;
+        height: 100%;
         flex-direction: column-reverse;
     }
 
@@ -155,18 +157,35 @@ body{
     }
 
     .text{
-        margin: 5px;
+        margin: 10px;
         padding: 10px;
         text-align: center;
-        width: 20px;
+        width: 25px;
         background-color: rgb(130, 124, 124);
         /* box-shadow: 5px 5px 10px black; */
         color: white;
         border-radius: 5px;
-        font-size: 20px;
+        font-size: 22px;
+    }
+
+    .correcto{
+        background-color: rgb(63, 246, 35);
+    }
+    
+    .contiene{
+        background-color: rgb(217, 145, 11);
     }
 
     #intentos h1{
         display: none;
+    }
+
+    #intentos input{
+        width: 70%;
+        text-align: center;
+    }
+
+    #intentos button{
+        width: 200px;
     }
 }
