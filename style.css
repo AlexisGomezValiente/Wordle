@@ -136,9 +136,6 @@ body{
 
 @media (max-width: 850px) {
     body {
-        overflow: hidden; /* Para deshabilitar el scroll */
-        padding: 0; /* Asegúrate de que no haya relleno adicional en el body */
-        margin: 0; /* Asegúrate de que no haya margen adicional en el body */
         height: calc(100vh - 70px); /* Ajusta la altura para restar la barra de navegación */
     }
 
