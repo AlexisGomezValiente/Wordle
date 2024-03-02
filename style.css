@@ -86,7 +86,7 @@ body{
     font-size: 40px;
 }
 
-#perdiste{
+#perdiste, #perdioPalabra{
     display: none;
 }
 

@@ -12,6 +12,7 @@ let resultadosPalabras = accederDom("palabrasRes");
 let reiniciar = accederDom("reiniciar");
 let error = accederDom("error");
 let ganaste = accederDom("ganaste");
+let perdioPalabra = accederDom("perdioPalabra");
 
 let palabraCorrecta = "";
 let palabraCorrArr = [];
@@ -188,6 +189,8 @@ const perdio = () => {
     perdiste.style.display = "block";
     reiniciar.style.pointerEvents = "auto";
     reiniciar.style.opacity = 1;
+    perdioPalabra.innerText = `PALABRA: ${palabraCorrecta}`;
+    perdioPalabra.style.display = "block";
 }
 
 const reinicio = () => {
@@ -201,6 +204,8 @@ const reinicio = () => {
     intentar.style.opacity = 1;
     ganaste.style.display = "none";
     resultadosPalabras.innerHTML = "";
+    perdioPalabra.innerText = "";
+    perdioPalabra.style.display = "none";
 }
 
 const gana = () => {
